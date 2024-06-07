@@ -14,6 +14,7 @@ namespace EntertainmentManager
 {
     public partial class SQLiteDataAccess
     {
+        public const int CHARACTER_LIMIT = 200;
         private const string CONNECTION_STRING = "Data";
         private const string EDIT_ITEM = @"
                     UPDATE Library
@@ -97,11 +98,11 @@ namespace EntertainmentManager
             }
         }
 
-        public static async Task<bool> SaveItem(IEnumerable<Item> items, bool delete)
+        public static async Task<bool> SaveItem(IEnumerable<Item> items, string username, bool overwrite)
         {
-            if (delete)
+            if (overwrite)
             {
-                if (!await DeleteItems(items.First().Owner))
+                if (!await DeleteItems(username))
                 {
                     return false;
                 }

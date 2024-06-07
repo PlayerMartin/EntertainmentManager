@@ -52,9 +52,19 @@ namespace EntertainmentManager
             Box.Text = "Fields cannot be left empty." + Environment.NewLine;
         }
 
+        public void UsernameTooLong()
+        {
+            Box.Text = $"Usernames must be shorter than {SQLiteDataAccess.CHARACTER_LIMIT + 1} characters" + Environment.NewLine;
+        }
+
         public void PasswordsNotMatch()
         {
             Box.Text = "Passwords do not match." + Environment.NewLine;
+        }
+
+        public void PasswordTooLong()
+        {
+            Box.Text = $"Passwords must be shorter than {SQLiteDataAccess.CHARACTER_LIMIT + 1} characters" + Environment.NewLine;
         }
 
         public void InvalidCredentials()

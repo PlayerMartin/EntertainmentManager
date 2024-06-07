@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EntertainmentManager")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+757b56d4700e394131cfeddcc8fb38d68d17a6da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20eb9cb7d881c6189a4583b96641f58a4eaaa122")]
 [assembly: System.Reflection.AssemblyProductAttribute("EntertainmentManager")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EntertainmentManager")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

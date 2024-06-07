@@ -34,6 +34,12 @@ namespace EntertainmentManager
                 return null;
             }
 
+            if (UsernameBox.Text.Length > SQLiteDataAccess.CHARACTER_LIMIT)
+            {
+                Print.UsernameTooLong();
+                return null;
+            }
+
             if (UsernameBox.Text.Any(char.IsWhiteSpace)) 
             {
                 Print.UsernameWhitespace();
@@ -43,6 +49,12 @@ namespace EntertainmentManager
             if (register && PasswordBox.Text != PasswordAgainBox.Text)
             {
                 Print.PasswordsNotMatch();
+                return null;
+            }
+
+            if (PasswordBox.Text.Length > SQLiteDataAccess.CHARACTER_LIMIT)
+            {
+                Print.PasswordTooLong();
                 return null;
             }
 

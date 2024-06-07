@@ -50,6 +50,7 @@
             TypeBox = new TextBox();
             StatusBox = new ComboBox();
             DeleteButton = new Button();
+            TagBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)LibraryGrid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)itemBindingSource).BeginInit();
             SuspendLayout();
@@ -57,10 +58,10 @@
             // Refresh
             // 
             Refresh.Anchor = AnchorStyles.Bottom;
-            Refresh.Location = new Point(9, 540);
+            Refresh.Location = new Point(5, 540);
             Refresh.Name = "Refresh";
             Refresh.Size = new Size(128, 45);
-            Refresh.TabIndex = 5;
+            Refresh.TabIndex = 6;
             Refresh.Text = "Refresh";
             Refresh.UseVisualStyleBackColor = true;
             Refresh.Click += Refresh_Click;
@@ -80,7 +81,7 @@
             LibraryGrid.Location = new Point(12, 12);
             LibraryGrid.Name = "LibraryGrid";
             LibraryGrid.RowHeadersWidth = 62;
-            LibraryGrid.Size = new Size(960, 522);
+            LibraryGrid.Size = new Size(1071, 522);
             LibraryGrid.TabIndex = 8;
             LibraryGrid.CellClick += LibraryGrid_CellClick;
             LibraryGrid.CellEndEdit += LibraryGrid_CellEndEdit;
@@ -204,10 +205,10 @@
             // Sort
             // 
             Sort.Anchor = AnchorStyles.Bottom;
-            Sort.Location = new Point(701, 540);
+            Sort.Location = new Point(827, 540);
             Sort.Name = "Sort";
             Sort.Size = new Size(128, 45);
-            Sort.TabIndex = 4;
+            Sort.TabIndex = 5;
             Sort.Text = "Sort";
             Sort.UseVisualStyleBackColor = true;
             Sort.Click += Sort_Click;
@@ -215,7 +216,7 @@
             // GenreBox
             // 
             GenreBox.Anchor = AnchorStyles.Bottom;
-            GenreBox.Location = new Point(143, 549);
+            GenreBox.Location = new Point(139, 547);
             GenreBox.Name = "GenreBox";
             GenreBox.PlaceholderText = "Genre";
             GenreBox.Size = new Size(124, 31);
@@ -225,52 +226,63 @@
             // YearBox
             // 
             YearBox.Anchor = AnchorStyles.Bottom;
-            YearBox.Location = new Point(273, 549);
+            YearBox.Location = new Point(399, 547);
             YearBox.Name = "YearBox";
             YearBox.PlaceholderText = "Year";
             YearBox.Size = new Size(124, 31);
-            YearBox.TabIndex = 1;
+            YearBox.TabIndex = 2;
             YearBox.TextAlign = HorizontalAlignment.Center;
             // 
             // TypeBox
             // 
             TypeBox.Anchor = AnchorStyles.Bottom;
-            TypeBox.Location = new Point(403, 549);
+            TypeBox.Location = new Point(529, 547);
             TypeBox.Name = "TypeBox";
             TypeBox.PlaceholderText = "Type";
             TypeBox.Size = new Size(124, 31);
-            TypeBox.TabIndex = 2;
+            TypeBox.TabIndex = 3;
             TypeBox.TextAlign = HorizontalAlignment.Center;
             // 
             // StatusBox
             // 
             StatusBox.Anchor = AnchorStyles.Bottom;
             StatusBox.FormattingEnabled = true;
-            StatusBox.Items.AddRange(new object[] { "COMPLETED", "WATCHING", "DEFAULT" });
-            StatusBox.Location = new Point(533, 547);
+            StatusBox.Items.AddRange(new object[] { "COMPLETED", "WATCHING", "Default" });
+            StatusBox.Location = new Point(659, 545);
             StatusBox.Name = "StatusBox";
             StatusBox.Size = new Size(162, 33);
-            StatusBox.TabIndex = 3;
-            StatusBox.Text = "Status";
+            StatusBox.TabIndex = 4;
+            StatusBox.Text = "Default";
             // 
             // DeleteButton
             // 
             DeleteButton.Anchor = AnchorStyles.Bottom;
             DeleteButton.BackColor = Color.Red;
-            DeleteButton.Location = new Point(852, 542);
+            DeleteButton.Location = new Point(963, 540);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(120, 45);
-            DeleteButton.TabIndex = 6;
+            DeleteButton.TabIndex = 9;
             DeleteButton.Text = "Delete";
             DeleteButton.UseVisualStyleBackColor = false;
             DeleteButton.Click += DeleteButton_Click;
+            // 
+            // TagBox
+            // 
+            TagBox.Anchor = AnchorStyles.Bottom;
+            TagBox.Location = new Point(269, 547);
+            TagBox.Name = "TagBox";
+            TagBox.PlaceholderText = "Tag";
+            TagBox.Size = new Size(124, 31);
+            TagBox.TabIndex = 1;
+            TagBox.TextAlign = HorizontalAlignment.Center;
             // 
             // Library
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
-            ClientSize = new Size(984, 597);
+            ClientSize = new Size(1095, 597);
+            Controls.Add(TagBox);
             Controls.Add(DeleteButton);
             Controls.Add(StatusBox);
             Controls.Add(TypeBox);
@@ -311,5 +323,6 @@
         private DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private ComboBox StatusBox;
         private Button DeleteButton;
+        private TextBox TagBox;
     }
 }

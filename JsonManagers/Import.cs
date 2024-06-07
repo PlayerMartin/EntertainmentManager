@@ -15,15 +15,22 @@ namespace EntertainmentManager.JsonManagers
         {
             try
             {
-                return await JsonSerializer.DeserializeAsync<List<Item>>(File.OpenRead(System.IO.Path.Combine(Path, Username + ".json")));
-            }
-            catch (Exception e)
-            {
-                if (e is IOException || e is JsonException || e is NotSupportedException)
+                using (FileStream fs = File.OpenRead(System.IO.Path.Combine(Path, Username + ".json")))
                 {
-                    return null;
+                    return await JsonSerializer.DeserializeAsync<List<Item>>(fs);
                 }
-                throw;
+            }
+            catch (IOException)
+            {
+                return null;
+            }
+            catch (JsonException)
+            {
+                return null;
+            }
+            catch (NotSupportedException)
+            {
+                return null;
             }
         }
     }

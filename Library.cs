@@ -56,24 +56,21 @@ namespace EntertainmentManager
             if (GenreBox.Text.Length > 0)
             {
                 filtered = filtered.Where(i => i.Genre.ToLower().Contains(GenreBox.Text.ToLower()));
-                //Items = Items.Where(i => i.Genre.ToLower().Contains(GenreBox.Text.ToLower()));
+            }
+            if (TagBox.Text.Length > 0)
+            {
+                filtered = filtered.Where(i => i.Tags.ToLower().Contains(TagBox.Text.ToLower()));
             }
             if (YearBox.Text.Length > 0)
             {
-                //Items = Items.Where(i => i.Released.ToLower().Contains(YearBox.Text.ToLower()));
-
                 filtered = filtered.Where(i => i.Released.ToLower().Contains(YearBox.Text.ToLower()));
             }
             if (TypeBox.Text.Length > 0)
             {
-                //Items = Items.Where(i => i.Type.ToLower().Equals(TypeBox.Text.ToLower()));
-
                 filtered = filtered.Where(i => i.Type.ToLower().Equals(TypeBox.Text.ToLower()));
             }
-            if (!StatusBox.Text.Equals("Status") && !StatusBox.Text.Equals("DEFAULT"))
+            if (!StatusBox.Text.Equals("Default"))
             {
-                //Items = Items.Where(i => i.Status.ToLower().Equals(StatusBox.Text.ToLower()));
-
                 filtered = filtered.Where(i => i.Status.ToLower().Equals(StatusBox.Text.ToLower()));
             }
             LoadData(filtered);
@@ -83,14 +80,26 @@ namespace EntertainmentManager
         {
             if (!await Edit(e))
             {
-                MessageBox.Show("Invalid edit operation"); // TODO
+                MessageBox.Show("Invalid edit operation");
             }
         }
 
         private async Task<bool> Edit(DataGridViewCellEventArgs e)
         {
-            if (FocusedItem == null) { return false; } // TODO
-            Item item = new Item(Items.ElementAt(e.RowIndex));
+            if (FocusedItem == null) { return false; }
+
+            Item changed = Items.ElementAt(e.RowIndex);
+
+            if (changed.Title.Length > SQLiteDataAccess.CHARACTER_LIMIT || changed.Type.Length > SQLiteDataAccess.CHARACTER_LIMIT ||
+                changed.Released.Length > SQLiteDataAccess.CHARACTER_LIMIT || changed.Runtime.Length > SQLiteDataAccess.CHARACTER_LIMIT ||
+                changed.Genre.Length > SQLiteDataAccess.CHARACTER_LIMIT || changed.Tags.Length > SQLiteDataAccess.CHARACTER_LIMIT ||
+                changed.Rating.ToString().Length > SQLiteDataAccess.CHARACTER_LIMIT || changed.Progress.ToString().Length > SQLiteDataAccess.CHARACTER_LIMIT ||
+                changed.Status.Length > SQLiteDataAccess.CHARACTER_LIMIT)
+            {
+                return false;
+            }
+
+            Item item = new Item(changed);
 
             if (item.Equals(FocusedItem)) { return true; }
 
@@ -108,10 +117,10 @@ namespace EntertainmentManager
             DialogResult res = MessageBox.Show("Do you want to proceed?", "Confirmation", MessageBoxButtons.YesNo);
             if (res == DialogResult.No) { return; }
 
-            if (!await SQLiteDataAccess.DeleteItem(FocusedItem)) 
+            if (!await SQLiteDataAccess.DeleteItem(FocusedItem))
             {
                 MessageBox.Show("Could't delete. Please try again."); // TODO
-                return; 
+                return;
             }
             LoadData(null);
         }
